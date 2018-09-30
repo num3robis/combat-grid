@@ -1,0 +1,33 @@
+td
+{
+    /* vw prend le pourcentage de la largeur de l'écran  */
+    width: 5.5em;
+    height: 5.5em;
+    background-image: url("../ressources/basic_tile.png");
+    background-size: 100%;
+}
+
+table
+{
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.player{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+
+.weapon{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+
+.obstacle{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-image: url("../ressources/rock_tile.png");
+}

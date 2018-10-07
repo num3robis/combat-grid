@@ -3,7 +3,9 @@ export class Cell {
     constructor (rowIndex, colIndex, trDaddy ) {
         this.row = rowIndex;
         this.col = colIndex;
-        this.trDaddy = trDaddy;        
+        this.trDaddy = trDaddy;   
+        this.accessible = true;
+        this.player = null;     
         let td = $(`<td class="cell" data-row="${this.row}" data-col="${this.col}"></td>`);
         this.td = td;
         $(trDaddy).append(td);

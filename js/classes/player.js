@@ -28,4 +28,5 @@ export class Player{
     isAdjacent(cell){
         return this.cell.isAdjacent(cell);
     }
+
 }

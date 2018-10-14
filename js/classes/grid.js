@@ -94,15 +94,16 @@ export class Grid {
         for (let i = 0; i < weapons; i++){
             let w = this.grid[randomGrid[i][0]][randomGrid[i][1]];
             this.weapons.push(new Weapon(w, i));
-        }  
-        let accessibleCells = this.getAccessiblesCells(3,this.grid[5][5]);
-        for (let i = 0; i < accessibleCells.length; i++){
-            
-            let toto = accessibleCells[i];
-            console.log(toto.td);
-            $(toto.td).css("border","solid 6px red");
         }
-
+        /*  
+        let accessiblesCells = this.getAccessiblesCells(3,this.grid[5][5]);
+        for (let i = 0; i < accessiblesCells.length; i++){
+            let possibility = accessiblesCells[i];
+            $(possibility.td).addClass('accessible');
+            $(possibility.td).on('click', () =>{
+                console.log(possibility)
+            });
+        }*/
     }
     // methode dans players
     // dans le callback du click qui déclenche le tour du joueur suivant
@@ -152,19 +153,19 @@ export class Grid {
             if(playerCell.y-i < 0){
                 break;
             }
-            let checkedCell = this.grid[playerCell.y-i][playerCell.x];
+            let checkedCell = this.grid[playerCell.x][playerCell.y-i];
             if(!checkedCell.accessible || checkedCell.player != null){
                 break;
             }
             result.push(checkedCell);
         }
 
-        //loop looking down
+        // loop looking down
         for(var i = 1; i < numberPossible+1; i++){
             if(playerCell.y+i >= this.height){
                 break;
             }
-            let checkedCell = this.grid[playerCell.y+i][playerCell.x];
+            let checkedCell = this.grid[playerCell.x][playerCell.y+i];
             if(!checkedCell.accessible || checkedCell.player != null){
                 break;
             }
@@ -176,39 +177,25 @@ export class Grid {
             if(playerCell.x-i < 0){
                 break;
             }
-            let checkedCell = this.grid[playerCell.y][playerCell.x-i];
+            let checkedCell = this.grid[playerCell.x-i][playerCell.y];
             if(!checkedCell.accessible || checkedCell.player != null){
                 break;
             }
             result.push(checkedCell);
         }
 
-        //loop looking right
+        // loop looking right
         for(var i = 1; i < numberPossible+1; i++){
-            if(playerCell.x+i >= this.height){
+            if(playerCell.x+i >= this.width){
                 break;
             }
-            let checkedCell = this.grid[playerCell.y][playerCell.x+i];
+            let checkedCell = this.grid[playerCell.x+i][playerCell.y];
             if(!checkedCell.accessible || checkedCell.player != null){
                 break;
             }
             result.push(checkedCell);
         }
-        
+        // array with all accessibles cells around a selected cell
         return result;
     }     
-}        
-      
-        // methode dans players
-        // dans le callback du click qui déclenche le tour du joueur suivant
-        // faire en parametres le nombre de cases sur lesquelles on peut se promener (on peut souvent se poser cette question )
-        // chercher en fonction de la place ou se situe la case et faire des calculs en soustractions et additions
-        // on peut boucler dans chaque direction de 0 à N 
-        // si c'est x qui n'existe pas, en dessous de zero ou en dessous il faut s'arreter la (break)
-        // deuxiè-me condition si il y a un mur
-        // quatre boucle dans chaque direction moyen de factoriser
-        // décider de -n à n dans la boucle, en ignorant zéro (qui est la case sur laquelle est le joueur)
-        // une fois ce tableau de case accessible, stocker, et boucler sur chaque élément la classe css de la couleur occupée
-        // retourner sur ce tableau pour supprimer les event listener et les couleurs pour éviter que le joueur puisse aller sur
-        // les cases de l'adversaires, en gros réinitialiser le tableau 
-            
+}                 

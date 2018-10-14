@@ -31,3 +31,7 @@ table
     background-size: cover;
     background-image: url("../ressources/rock_tile.png");
 }
+
+.accessible{
+    border: solid 6px red;
+}

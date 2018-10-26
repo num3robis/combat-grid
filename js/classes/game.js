@@ -7,13 +7,11 @@ export class Game {
         let grid = new Grid(8,8);
         this.difficulty = difficulty;
         grid.generateGrid();  
-        grid.initGrid(4,4,6);
-        grid.players[1].startTurn(difficulty, grid);        
-        $('button').click(function(){
-            console.log(this);
-        }.bind(this));
-    }  
+        grid.initGrid(4,6);
+        grid.players[0].startTurn(difficulty, grid); 
 
+
+    }  
 
 
     // fonction du joueur start turn qui aura besoin de la grille (donc a appeler dans game)

@@ -5,7 +5,8 @@ export class Cell {
         this.col = colIndex;
         this.trDaddy = trDaddy;   
         this.accessible = true;
-        this.player = null;     
+        this.player = null;   
+        this.weapon = null;  
         let td = $(`<td class="cell" data-row="${this.row}" data-col="${this.col}"></td>`);
         this.td = td;
         $(trDaddy).append(td);

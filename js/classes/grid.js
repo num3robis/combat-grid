@@ -8,7 +8,7 @@ export class Grid {
         this.height = height;
         this.width = width;
         this.players = [];
-        this.weapons = [];
+        this.weapons = [new Weapon(0), new Weapon(1), new Weapon(2), new Weapon(3)]; // on peut créer les armes directement dedans, possibilité de rajouter une arme dans le tableau 
     }
     
     generateGrid(){   
@@ -30,7 +30,7 @@ export class Grid {
         }return grid;
     };
 
-    initGrid(players, weapons, obstacles){
+    initGrid(players, obstacles){
 
         // Loop with all the positions available
         let randomGrid = []; 
@@ -91,19 +91,10 @@ export class Grid {
 
         randomGrid.splice(0 , obstacles);
 
-        for (let i = 0; i < weapons; i++){
+        for (let i = 0; i < this.weapons.length; i++){
             let w = this.grid[randomGrid[i][0]][randomGrid[i][1]];
-            this.weapons.push(new Weapon(w, i));
+            this.weapons[i].placeOnCell(w);
         }
-        /*  
-        let accessiblesCells = this.getAccessiblesCells(3,this.grid[5][5]);
-        for (let i = 0; i < accessiblesCells.length; i++){
-            let possibility = accessiblesCells[i];
-            $(possibility.td).addClass('accessible');
-            $(possibility.td).on('click', () =>{
-                console.log(possibility)
-            });
-        }*/
     }
     // methode dans players
     // dans le callback du click qui déclenche le tour du joueur suivant

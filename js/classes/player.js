@@ -1,31 +1,17 @@
-import { Weapon } from "./weapon";
+import { Weapon } from './weapon.js'; 
 
-export class Player{
+export class Player {
 
-    constructor(cell, playerId){
+    constructor( cell, playerId ){
         this.cell =  cell; 
         this.playerId = playerId;
-        this.weapon = new Weapon(4);
+        this.weapon = new Weapon("weapon0", 10);
         this.healthPoints = 100;
-        this.htmlElement = $(`<div class="player" id="player${this.playerId}"></div>`);
+        this.defense = false;
+        this.htmlElement = $(`<div class="player player${this.playerId}" id="player${this.playerId}"></div>`);
         cell.td.append(this.htmlElement);
-
-        switch(this.playerId){
-            case 0: 
-                $(this.htmlElement).css('background-image', 'url("../../../ressources/angelBlueC.png")'); 
-                break;
-            case 1: 
-                $(this.htmlElement).css('background-image', 'url("../../../ressources/angelRed.png")'); 
-                break;
-            case 2: 
-                $(this.htmlElement).css('background-image', 'url("../../../ressources/angelOrange.png")');
-                break;
-            case 3: 
-                $(this.htmlElement).css('background-image', 'url("../../../ressources/angelSilver.png")');
-                break;
-            default:                
-            $(this.htmlElement).css('background-image', 'url("../../../ressources/angelBlueC.png")'); 
-        }
+        console.log(this.weapon.htmlElement);
+        $(this.weapon.htmlElement).appendTo($(`#player-card-${this.playerId} .card-body`));
     }  
      
     isAdjacent(cell){
@@ -39,8 +25,8 @@ export class Player{
             let possibility = accessiblesCells[i];
             $(possibility.td).addClass('accessible');
             $(possibility.td).on('click', () => {
-                this.move(possibility, accessiblesCells);
-                grid.players[(this.playerId + 1) % grid.players.length].startTurn(difficulty, grid); 
+                this.move(possibility, accessiblesCells); 
+                grid.players[(this.playerId) % grid.players.length].startTurn(difficulty, grid); 
             });
         }
     }
@@ -48,8 +34,14 @@ export class Player{
     move(target, accessiblesCells){
         this.cell.player = null;
         target.player = this;
+        if(this.cell.weapon){
+            this.cell.weapon.htmlElement.show();
+        }
         this.cell = target; 
         this.cell.td.append(this.htmlElement);
+        if(this.cell.weapon){
+            this.cell.weapon.placeOnPlayer(target.player);
+        }
         for (let i = 0; i < accessiblesCells.length; i++){
             let possibility = accessiblesCells[i];
             $(possibility.td).removeClass('accessible');

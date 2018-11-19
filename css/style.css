@@ -5,6 +5,7 @@ td
     height: 5.5em;
     background-image: url("../ressources/basic_tile.png");
     background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 table
@@ -25,6 +26,11 @@ table
     background-size: cover;
 }
 
+.card-body .weapon {
+    width: 5.5em;
+    height: 5.5em;
+    background-size: cover;
+}
 .obstacle{
     width: 100%;
     height: 100%;
@@ -35,4 +41,40 @@ table
 .accessible{
     
     border: solid 3px red;
+}
+
+.player1{
+    background-image: url("../../../ressources/angelBlueC.png");
+}
+
+.player2{
+    background-image: url("../../../ressources/angelRed.png");
+}
+
+.player3{
+    background-image: url("../../../ressources/angelOrange.png");
+}
+
+.player4{
+    background-image: url("../../../ressources/angelSilver.png");
+}
+
+.weapon0{
+    background-image: url("../../../ressources/hands.png");
+}
+
+.weapon1{
+    background-image: url("../../../ressources/dagger.png");
+}
+
+.weapon2{
+    background-image: url("../../../ressources/hammer.png");
+}
+
+.weapon3{
+    background-image: url("../../../ressources/sword.png");
+}
+
+.weapon4{
+    background-image: url("../../../ressources/spear.png");
 }

@@ -8,7 +8,10 @@ export class Grid {
         this.height = height;
         this.width = width;
         this.players = [];
-        this.weapons = [new Weapon(0), new Weapon(1), new Weapon(2), new Weapon(3)]; // on peut créer les armes directement dedans, possibilité de rajouter une arme dans le tableau 
+        this.weapons = [new Weapon("weapon1" , 15), 
+        new Weapon("weapon2", 25),
+        new Weapon("weapon3", 20), 
+        new Weapon("weapon4", 22)]; 
     }
     
     generateGrid(){   
@@ -28,7 +31,7 @@ export class Grid {
             }; 
             this.grid = grid;
         }return grid;
-    };
+    }
 
     initGrid(players, obstacles){
 
@@ -72,7 +75,17 @@ export class Grid {
                 }
             }
             // Create new player
-            let player = new Player(cell, i);
+            let player = new Player(cell, i + 1);
+            $(`<div id="player-card-${i + 1}" class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Player ${i + 1}</h>
+              <a href="#" class="btn btn-primary attack">Attack</a>
+              <a href="#" class="btn btn-primary defense">Defend</a>
+            </div>
+            </div>`).appendTo("#interface"/*"<div id=\"interface\"></table>"*/);
+            $(player.weapon.htmlElement).appendTo($(`#player-card-${player.playerId} .card-body`));
+            //console.log(player.cell.weapon.htmlElement)
+            //$(player.cell.weapon.htmlElement).appendTo($(`#player-card-${player.playerId} .card-body`));
             this.players.push(player);
             cell.player = player;
             
@@ -85,7 +98,7 @@ export class Grid {
         for (let i = 0; i < obstacles; i++){
             let o = this.grid[randomGrid[i][0]][randomGrid[i][1]];
             o.accessible = false;
-            let htmlElement = $(`<div class="obstacle" ></div>`);
+            let htmlElement = $(`<div class="obstacle"></div>`);
             o.td.append(htmlElement);
         }
 
@@ -96,18 +109,6 @@ export class Grid {
             this.weapons[i].placeOnCell(w);
         }
     }
-    // methode dans players
-    // dans le callback du click qui déclenche le tour du joueur suivant
-    // faire en parametres le nombre de cases sur lesquelles on peut se promener (on peut souvent se poser cette question )
-    // chercher en fonction de la place ou se situe la case et faire des calculs en soustractions et additions
-    // on peut boucler dans chaque direction de 0 à N 
-    // si c'est x qui n'existe pas, en dessous de zero ou en dessous il faut s'arreter la (break)
-    // deuxiè-me condition si il y a un mur
-    // quatre boucle dans chaque direction moyen de factoriser
-    // décider de -n à n dans la boucle, en ignorant zéro (qui est la case sur laquelle est le joueur)
-    // une fois ce tableau de case accessible, stocker, et boucler sur chaque élément la classe css de la couleur occupée
-    // retourner sur ce tableau pour supprimer les event listener et les couleurs pour éviter que le joueur puisse aller sur
-    // les cases de l'adversaires, en gros réinitialiser le tableau 
 
     shuffle(tab) {
         for (let i = tab.length - 1; i > 0; i--) {
@@ -129,10 +130,6 @@ export class Grid {
             }
         }
         return false
-    }
-
-    killAdjacentPlayer(tab){
-        
     }
 
     getAccessiblesCells(numberPossible, playerCell) {

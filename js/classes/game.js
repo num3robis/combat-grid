@@ -7,6 +7,6 @@ export class Game {
         this.difficulty = difficulty;
         grid.generateGrid();  
         grid.initGrid(4,6);
-        grid.players[0].startTurn(difficulty, grid); 
+        grid.players[0].startTurn(grid); 
     }  
 }

@@ -23,6 +23,5 @@ export class Weapon {
         let weaponPlayer = player.weapon;
         player.weapon = this;
         player.cell.weapon = weaponPlayer;
-        console.log(player.weapon);   
     }
 }

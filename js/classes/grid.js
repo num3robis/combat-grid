@@ -4,7 +4,7 @@ import { Weapon } from './weapon.js';
 
 export class Grid {
 
-    constructor ( width , height ) {
+    constructor ( width , height) {
         this.height = height;
         this.width = width;
         this.players = [];
@@ -78,14 +78,15 @@ export class Grid {
             let player = new Player(cell, i + 1);
             $(`<div id="player-card-${i + 1}" class="card" style="width: 18rem;">
             <div class="card-body">
-              <h5 class="card-title">Player ${i + 1}</h>
-              <a href="#" class="btn btn-primary attack">Attack</a>
-              <a href="#" class="btn btn-primary defense">Defend</a>
+              <h3 class="card-title">Player ${i + 1}</h3>
+              <p>${player.healthPoints}/100</p>
+              <div hidden id="fighting-buttons-${i+1}">
+                <button class="btn btn-primary attack">Attack</button>
+                <button class="btn btn-primary defense">Defend</button>
+              </div>
             </div>
             </div>`).appendTo("#interface"/*"<div id=\"interface\"></table>"*/);
             $(player.weapon.htmlElement).appendTo($(`#player-card-${player.playerId} .card-body`));
-            //console.log(player.cell.weapon.htmlElement)
-            //$(player.cell.weapon.htmlElement).appendTo($(`#player-card-${player.playerId} .card-body`));
             this.players.push(player);
             cell.player = player;
             

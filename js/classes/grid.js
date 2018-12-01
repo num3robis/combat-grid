@@ -17,7 +17,7 @@ export class Grid {
     generateGrid(){   
 
         //Table creation
-        $("body").append("<table id=\"frame\"></table>");
+        $(".container").append("<table id=\"frame\"></table>");
 
         let grid = [];
         for (var i = 0; i < this.height; i++) {
@@ -79,7 +79,7 @@ export class Grid {
             $(`<div id="player-card-${i + 1}" class="card" style="width: 18rem;">
             <div class="card-body">
               <h3 class="card-title">Player ${i + 1}</h3>
-              <p>${player.healthPoints}/100</p>
+              <p><span class="healthPoints-${player.playerId}">${player.healthPoints}</span>/100</p>
               <div hidden id="fighting-buttons-${i+1}">
                 <button class="btn btn-primary attack">Attack</button>
                 <button class="btn btn-primary defense">Defend</button>
@@ -89,7 +89,6 @@ export class Grid {
             $(player.weapon.htmlElement).appendTo($(`#player-card-${player.playerId} .card-body`));
             this.players.push(player);
             cell.player = player;
-            
             // Now, loop for all players, watch out for because if i got 99 players cell can be null
         }
         

@@ -77,8 +77,9 @@ export class Player {
     }
 
     attack(attackedPlayer){
-        console.log(attackedPlayer.healthPoints);
         attackedPlayer.healthPoints -= this.defense? this.weapon.damagePoints / 2: this.weapon.damagePoints;
+        $(`.healthPoints-${attackedPlayer.playerId}`).replaceWith(
+            `<span class="healthPoints-${attackedPlayer.playerId}">${attackedPlayer.healthPoints}</span>`);
     }
 
     nextFightTurn(nextPlayer, grid){

@@ -38,6 +38,12 @@ table
     background-image: url("../ressources/rock_tile.png");
 }
 
+body {
+    display: block;
+    background-color: lightblue;
+    background-image: url("../ressources/background.png");
+}
+
 .accessible{
     
     border: solid 3px red;

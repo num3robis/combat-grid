@@ -57,25 +57,27 @@ export class Grid {
                 let isAdjacent = false;
                 //Now let's loop again to check if this cell is near another player
                 for (let k = 0; k < i; k++){
-                    // use of method to check if near another playah
+                    // use of method to check if near another player
                     if(this.players[k].isAdjacent(otherCell)){
-                        // if true let's end this RIGHT NOW !!! 
+                        // if true let's end the loop 
                         isAdjacent = true;
                         break;
                     }  
                 }
-                // if adjacent if false then this cell isn't near another playah
+                //if false then this cell isn't near another player
                 if(!isAdjacent){
                     // Fill cell with this really interesting cell
                     cell = otherCell;
                     // Delete this finally not so interesting cell
                     randomGrid.splice(j,1);
-                    // Can break since we found DA ONE
+                    // Can break since we found the one we need
                     break;
                 }
             }
             // Create new player
             let player = new Player(cell, i + 1);
+
+            // Interface creation
             $(`<div id="player-card-${i + 1}" class="card" style="width: 18rem;">
             <div class="card-body">
               <h3 class="card-title">Player ${i + 1}</h3>
@@ -85,16 +87,13 @@ export class Grid {
                 <button class="btn btn-primary defense">Defend</button>
               </div>
             </div>
-            </div>`).appendTo("#interface"/*"<div id=\"interface\"></table>"*/);
+            </div>`).appendTo("#interface");
             $(player.weapon.htmlElement).appendTo($(`#player-card-${player.playerId} .card-body`));
             this.players.push(player);
             cell.player = player;
-            // Now, loop for all players, watch out for because if i got 99 players cell can be null
         }
-        
-        // faire des fonctions avec des places qui ne sont pas adjacentes 
-        // ligne 56 (meme 54 si on est foufou) à 63, est-ce que cette cellule est déjà placé (arg: cell)
 
+        // Obstacles
         for (let i = 0; i < obstacles; i++){
             let o = this.grid[randomGrid[i][0]][randomGrid[i][1]];
             o.accessible = false;
@@ -102,14 +101,17 @@ export class Grid {
             o.td.append(htmlElement);
         }
 
+        // Remove non-accessibles cells because of the obstacles from the grid
         randomGrid.splice(0 , obstacles);
 
+        // Weapons
         for (let i = 0; i < this.weapons.length; i++){
             let w = this.grid[randomGrid[i][0]][randomGrid[i][1]];
             this.weapons[i].placeOnCell(w);
         }
     }
 
+    // Shuffling Method
     shuffle(tab) {
         for (let i = tab.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -120,11 +122,12 @@ export class Grid {
         return tab;
     }
 
+    // Method checking if there is any cell near the player
     checkAdjacentPlayer(player, randomTab){
         for (let i = 0; i < randomTab.length; i++){
             for(let i = 0; i < randomTab.lenght; i++){
-                let toto = player.isAdjacent(randomTab[i+1]);
-                if (toto === true){
+                let adjacentCell = player.isAdjacent(randomTab[i+1]);
+                if (adjacentCell === true){
                     return [randomTab[i].x,randomTab[i].y]
                 }
             }
@@ -132,6 +135,7 @@ export class Grid {
         return false
     }
 
+    // Checking where the player can go
     getAccessiblesCells(numberPossible, playerCell) {
 
         let result = [];

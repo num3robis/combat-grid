@@ -1,4 +1,4 @@
 import { Game } from './classes/game.js';
 
-let newGame = new Game("Moyenne");
+let newGame = new Game();
 export default newGame;

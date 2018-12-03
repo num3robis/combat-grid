@@ -1,4 +1,4 @@
-td
+﻿td
 {
     /* vw prend le pourcentage de la largeur de l'écran  */
     width: 5.5em;
@@ -55,7 +55,7 @@ table {
 }
 
 body{
-    background-image: url("../../../ressources/background.png");
+    background-image: url("../ressources/background.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -66,37 +66,37 @@ body{
 }
 
 .player1{
-    background-image: url("../../../ressources/angelBlueC.png");
+    background-image: url("../ressources/angelBlueC.png");
 }
 
 .player2{
-    background-image: url("../../../ressources/angelRed.png");
+    background-image: url("../ressources/AngelRed.PNG");
 }
 
 .player3{
-    background-image: url("../../../ressources/angelOrange.png");
+    background-image: url("../ressources/AngelOrange.PNG");
 }
 
 .player4{
-    background-image: url("../../../ressources/angelSilver.png");
+    background-image: url("../ressources/AngelSilver.PNG");
 }
 
 .weapon0{
-    background-image: url("../../../ressources/hands.png");
+    background-image: url("../ressources/hands.png");
 }
 
 .weapon1{
-    background-image: url("../../../ressources/dagger.png");
+    background-image: url("../ressources/dagger.png");
 }
 
 .weapon2{
-    background-image: url("../../../ressources/hammer.png");
+    background-image: url("../ressources/hammer.png");
 }
 
 .weapon3{
-    background-image: url("../../../ressources/sword.png");
+    background-image: url("../ressources/sword.png");
 }
 
 .weapon4{
-    background-image: url("../../../ressources/spear.png");
+    background-image: url("../ressources/spear.png");
 }

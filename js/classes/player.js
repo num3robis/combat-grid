@@ -67,6 +67,7 @@ export class Player {
 
     // Managing the combat situation as a whole, calling methods for each specific part
     fight(player, grid){
+        console.log("toto")
         $(`#fighting-buttons-${this.playerId}`).removeAttr("hidden");
         $(`#fighting-buttons-${this.playerId} .attack`).off('click').on('click', function(){
             this.attack(player);
@@ -80,7 +81,11 @@ export class Player {
 
     // Substracting health points for the attacked player, and on his interface
     attack(attackedPlayer){
-        attackedPlayer.healthPoints -= this.defense? this.weapon.damagePoints / 2: this.weapon.damagePoints;
+        attackedPlayer.healthPoints -= attackedPlayer.defense ? this.weapon.damagePoints / 2: this.weapon.damagePoints;
+        if(attackedPlayer.defense){
+            attackedPlayer.defense = false;
+            this.weapon.damagePoints * 2;
+        }
         $(`.healthPoints-${attackedPlayer.playerId}`).replaceWith(
             `<span class="healthPoints-${attackedPlayer.playerId}">${attackedPlayer.healthPoints}</span>`);
     }

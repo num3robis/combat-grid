@@ -4,7 +4,7 @@ import { Weapon } from './weapon.js';
 
 export class Grid {
 
-    constructor ( width , height) {
+    constructor (width, height) {
         this.height = height;
         this.width = width;
         this.players = [];
@@ -50,7 +50,7 @@ export class Grid {
         for (let i = 0; i < players; i ++){
             // Need to find a cell, for now null
             let cell = null;
-            // Let's loop on the array to find a cell not near a player!! YAY    
+            // Let's loop on the array to find a cell not near a player!! 
             for (let j = 0; j < randomGrid.length; j++){
                 // Take a cell, in the randomGrid
                 let otherCell = this.grid[randomGrid[j][0]][randomGrid[j][1]];
@@ -121,20 +121,7 @@ export class Grid {
         }
         return tab;
     }
-
-    // Method checking if there is any cell near the player
-    checkAdjacentPlayer(player, randomTab){
-        for (let i = 0; i < randomTab.length; i++){
-            for(let i = 0; i < randomTab.lenght; i++){
-                let adjacentCell = player.isAdjacent(randomTab[i+1]);
-                if (adjacentCell === true){
-                    return [randomTab[i].x,randomTab[i].y]
-                }
-            }
-        }
-        return false
-    }
-
+    
     // Checking where the player can go
     getAccessiblesCells(numberPossible, playerCell) {
 

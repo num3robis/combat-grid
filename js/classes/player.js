@@ -8,7 +8,6 @@ export class Player {
         this.weapon = new Weapon("weapon0", 10);
         this.healthPoints = 100;
         this.defense = false;
-        this.dead = false;
         this.htmlElement = $(`<div class="player player${this.playerId}" id="player${this.playerId}"></div>`);
         cell.td.append(this.htmlElement);
         $(this.weapon.htmlElement).appendTo($(`#player-card-${this.playerId} .card-body`));
@@ -67,7 +66,6 @@ export class Player {
 
     // Managing the combat situation as a whole, calling methods for each specific part
     fight(player, grid){
-        console.log("toto")
         $(`#fighting-buttons-${this.playerId}`).removeAttr("hidden");
         $(`#fighting-buttons-${this.playerId} .attack`).off('click').on('click', function(){
             this.attack(player);
